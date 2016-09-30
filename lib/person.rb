@@ -34,61 +34,19 @@ class Person
   end
 
   def take_bath
-    @hygiene = @hygiene + 4
-
-    self.hygiene=(@hygiene)
-
+    self.hygiene += 4
     return "♪ Rub-a-dub just relaxing in the tub ♫"
   end
 
-  def hygiene=(num)
-    @hygiene = num
-
-    if @hygiene > 10
-      @hygiene = 10
-    elsif @hygiene < 0
-      @hygiene = 0
-    end
-  end
-
-  def happiness=(num)
-    @happiness = num
-
-    if @happiness > 10
-      @happiness= 10
-    elsif @happiness < 0
-      @happiness = 0
-    end
-  end
-
   def work_out
-    @happiness = @happiness + 2
-    @hygiene = @hygiene - 3
-
-    self.hygiene=(@hygiene)
-    self.happiness=(@happiness)
-
-    if @happiness > 10
-      @happiness = 10
-    end
-
-    if @hygiene < 0
-      @hygiene = 0
-    end
-
-    return "♪ another one bites the dust ♫"
+    self.hygiene -= 3
+    self.happiness += 2
+    "♪ another one bites the dust ♫"
   end
 
   def call_friend (friend)
-    @happiness = @happiness + 3
-
-    self.happiness=(@happiness)
-
-    friend.happiness = friend.happiness + 3
-    if friend.happiness > 10
-      friend.happiness = 10
-    end
-
+    @happiness += 3
+    friend.happiness += 3
     return "Hi #{friend.name}! It's #{@name}. How are you?"
   end
 
@@ -118,4 +76,17 @@ class Person
     self.happiness=(@happiness)
     friend.happiness=(friend.happiness)
   end
+
+  def happiness=(num)
+    @happiness = num
+    @happiness = 10 if @happiness > 10
+    @happiness = 0 if @happiness < 0
+  end
+
+  def hygiene=(num)
+    @hygiene = num
+    @hygiene = 10 if @hygiene > 10
+    @hygiene = 0 if @hygiene < 0
+  end
+
 end
